@@ -157,52 +157,53 @@ w = Window.new("superLied",Window.availableBounds)
 	~entry_view.string = "";
 };
 
-//synths & samplers
+//samples go here! Change PathName to point to your own folder(s) of samples
+	//TIP: you can drag and drop a folder right into this window, and its pathname will show up where you drop it
 d = Dictionary.new;
 d.add(\l ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/606/").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/606/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\m ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/808/").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/808/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\h ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/909/").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/909/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\zk ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/zkikz").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/zkikz/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\zm ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/zmetal").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/zmetal/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\zp ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/zpercz").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/zpercz/").entries.collect({
 	arg sf;
 	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\zs ->
-PathName("/Users/spencerkingmangraham/Desktop/audio/zsnarez").entries.collect({
-arg sf;
-Buffer.read(s, sf.fullPath);
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/zsnarez/").entries.collect({
+	arg sf;
+	Buffer.read(s, sf.fullPath);
 });
 );
 d.add(\n ->
-	PathName("/Users/spencerkingmangraham/Desktop/audio/PBP_Samples").entries.collect({
+	PathName(thisProcess.nowExecutingPath.dirname++"/samples/PBP/").entries.collect({
 	arg sf;
 	Buffer.readChannel(s, sf.fullPath, channels: 0);
 	Buffer.readChannel(s, sf.fullPath, channels: 1);
@@ -224,7 +225,7 @@ d.add(\n ->
 );
 );
 
-
+//samplers
 (
 SynthDef(\bufPlay, {
 	arg buf=[0,1],
@@ -315,6 +316,7 @@ s.sync;
 ).play;
 );
 
+//synths
 (
 SynthDef(\sine, {
 	arg freq=330,
